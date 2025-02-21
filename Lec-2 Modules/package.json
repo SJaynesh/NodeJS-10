@@ -1,0 +1,12 @@
+{
+  "name": "lec-2-modules",
+  "version": "1.0.0",
+  "main": "hello.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jaynesh": "node hello"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
