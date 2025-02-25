@@ -1,4 +1,7 @@
 const http = require("http");
+const fs = require("fs");
+
+const port = 9000;
 
 const myServer = http.createServer((req, res) => {
     console.log("New Request and Response");
@@ -7,25 +10,27 @@ const myServer = http.createServer((req, res) => {
     const page = req.url;
     console.log("URL", req.url);
 
+    let fileName = "";
+
     switch (page) {
         case '/':
-            res.write("<h1>Home Page</h1>");
-            res.end();
+            fileName = "home.html";
             break;
         case '/about':
-            res.write("<h1> About Page</h1>");
-            res.end();
+            fileName = "about.html";
             break;
-        case '/contact':
-            res.write("<h1> Contact Page</h1>");
-            res.end();
-            break;
+        // case '/contact':
+        //     fileName = "contact.html";
+        //     break;
         default:
-            res.write("<h1> 404 Not Found !! </h1>")
-            res.end();
+            fileName = "error.html";
     }
+
+    fs.readFile(fileName, (err, result) => {
+        res.end(result);
+    })
 
     // res.end("<h1>Hello Server</h1>");
 });
 
-myServer.listen(9000, () => console.log("Server Started !!"));
+myServer.listen(port, () => console.log("Server Started !!"));
