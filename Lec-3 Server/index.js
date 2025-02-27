@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const port = 9000;
 
-const myServer = http.createServer((req, res) => {
+function handler(req, res) {
     console.log("New Request and Response");
     // res.write("Hello My Server !!");
 
@@ -31,6 +31,8 @@ const myServer = http.createServer((req, res) => {
     })
 
     // res.end("<h1>Hello Server</h1>");
-});
+}
+
+const myServer = http.createServer(handler);
 
 myServer.listen(port, () => console.log("Server Started !!"));

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>JavaScript</h1>
+
+    <!-- <center>
+        <% for(let i=1; i<=5; i++) { %>
+            <p>Hello World <%= i %>
+            </p>
+            <%}%>
+    </center> -->
+
+    <center>
+        <h1>Hey !! <%= name%>
+        </h1>
+        <table border="2">
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Password</th>
+            </tr>
+
+
+            <% studData.forEach((e)=> { %>
+                <tr>
+                    <td>
+                        <%= studData.indexOf(e) + 1 %>
+                    </td>
+                    <td>
+                        <%= e.name %>
+                    </td>
+                    <td>
+                        <%= e.age %>
+                    </td>
+                    <td>
+                        <%= e.email %>
+                    </td>
+                    <td>
+                        <%= e.phone %>
+                    </td>
+                    <td>
+                        <%= e.password %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </center>
+</body>
+
+</html>
