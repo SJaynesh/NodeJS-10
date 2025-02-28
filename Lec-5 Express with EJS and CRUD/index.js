@@ -28,10 +28,31 @@ let studData = [
 ];
 
 app.set("view engine", "ejs");
+app.use(express.urlencoded());
 
 app.get("/", (req, res) => {
     let name = "Jaynesh";
-    res.render("index", { name, studData })
+    res.render("table", { name, studData })
+})
+
+app.get('/insert', (req, res) => {
+    res.render("form");
+})
+
+app.post("/addStud", (req, res) => {
+    console.log("Request Data : ", req.body);
+
+    const obj = {
+        name: req.body.name,
+        age: req.body.age,
+        email: req.body.email,
+        phone: req.body.phone,
+        password: req.body.password
+    }
+
+    studData.push(obj);
+
+    res.redirect("/insert");
 })
 
 // app.get("/about", (req, res) => {
