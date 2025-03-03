@@ -3,42 +3,23 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
-let studData = [
-    {
-        name: "Harsh",
-        age: 20,
-        email: "harsh@gmail.com",
-        phone: "235690550",
-        password: "Harsh@124"
-    },
-    {
-        name: "Jeck",
-        age: 18,
-        email: "jeck@gmail.com",
-        phone: "896531756",
-        password: "Jec#421"
-    },
-    {
-        name: "Mohan",
-        age: 25,
-        email: "mohan@gmail.com",
-        phone: "963214796",
-        password: "mohan908@#"
-    }
-];
+let studData = [];
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded());
 
+// Route Table Page
 app.get("/", (req, res) => {
     let name = "Jaynesh";
     res.render("table", { name, studData })
 })
 
+// Route Insert Form Page
 app.get('/insert', (req, res) => {
     res.render("form");
 })
 
+// Logic Insert Student in Array
 app.post("/addStud", (req, res) => {
     console.log("Request Data : ", req.body);
 
@@ -52,7 +33,17 @@ app.post("/addStud", (req, res) => {
 
     studData.push(obj);
 
-    res.redirect("/insert");
+    res.redirect("/");
+})
+
+// Logic Delete in Array 
+app.get("/delete", (req, res) => {
+    console.log(req.query.id); //1
+
+    studData = studData.filter((val, index) => index != req.query.id);
+    //                                          2 != 2
+
+    res.redirect("/");
 })
 
 // app.get("/about", (req, res) => {
