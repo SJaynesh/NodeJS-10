@@ -36,6 +36,41 @@ app.post("/addStud", (req, res) => {
     res.redirect("/");
 })
 
+// Logic Update in Array
+app.get("/edit", (req, res) => {
+
+    const id = req.query.id; //1 
+
+    const data = studData.find((val, i) => id == i); // 1 == 1
+
+    data.id = req.query.id;
+
+    console.log(data);
+
+    res.render("edit", { data });  // 6 
+})
+
+app.post("/updateStudent", (req, res) => {
+    const { id, name, age, email, phone, password } = req.body;
+
+    console.log("Update Data");
+
+    console.log(req.body);
+
+    studData = studData.map((val, i) => {
+        if (i == id) {
+            val.name = name;
+            val.age = age;
+            val.email = email;
+            val.phone = phone;
+            val.password = password;
+        }
+        return val;
+    })
+
+    res.redirect("/");
+})
+
 // Logic Delete in Array 
 app.get("/delete", (req, res) => {
     console.log(req.query.id); //1
