@@ -12,10 +12,12 @@ app.get('/', (req, res) => {
     res.render('form');
 })
 
+// Insert
 app.post('/addStud', (req, res) => {
     console.log(req.body);
 
     const { name, age, course } = req.body;
+
 
     student.create({
         name: name,
@@ -26,8 +28,35 @@ app.post('/addStud', (req, res) => {
     }).catch((err) => {
         console.log("Error ", err);
     })
+    // res.redirect('/');
+    res.redirect('/fetch');
+})
 
-    res.redirect('/');
+// Fetch
+app.get('/fetch', (req, res) => {
+
+    student.find({}).then((records) => {
+        console.log(records);
+        res.render('table', { records });
+    }).catch((err) => {
+        console.log("Error", err);
+        res.send(err);
+    });
+})
+
+// Delete
+app.get('/deleteStud', (req, res) => {
+    const id = req.query.id;
+    console.log(id);
+
+    student.findByIdAndDelete(id).then(() => {
+        console.log("Deleted Succussfully..");
+    }).catch((err) => {
+        console.log("Error", err);
+    });
+
+    res.redirect('/fetch');
+
 })
 
 app.listen(port, () => console.log('Server started...'));
