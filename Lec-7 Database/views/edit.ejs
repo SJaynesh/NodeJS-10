@@ -10,30 +10,26 @@
 <body>
 
     <div class="container col-4 my-4">
-        <h1>Student Form</h1>
-        <form method="post" action="/studOperation" enctype="multipart/form-data">
+        <h1>Edit Student Form</h1>
+        <form method="post" action="/studOperation">
+            <input type="hidden" class="form-control" name="id" value="<%= record.id %>">
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" value="<%= record.name %>">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Age</label>
-                <input type="number" class="form-control" name="age">
+                <input type="number" class="form-control" name="age" value="<%= record.age %>">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Course</label>
-                <input type="text" class="form-control" name="course">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Image</label>
-                <input type="file" class="form-control" name="image">
+                <input type="text" class="form-control" name="course" value="<%= record.course %>">
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-warning">Update</button>
 
 
         </form>

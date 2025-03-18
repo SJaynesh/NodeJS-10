@@ -18,31 +18,39 @@
                     <th scope="col">Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Course</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% records.map((e)=> { %>
-
+                <% records.map((e)=> {
+                    const {id,name,age,course,image}=e;
+                    %>
                     <tr>
                         <td>
-                            <%= e.name%>
+                            <%= name%>
                         </td>
                         <td>
-                            <%= e.age%>
+                            <%= age%>
                         </td>
                         <td>
-                            <%= e.course%>
+                            <%= course%>
                         </td>
                         <td>
-                            <button class="btn btn-success">Edit</button>
-                            <button class="btn btn-danger"><a href="/deleteStud?id=<%= e.id%>">Delete</a></button>
+                            <img src="<%= image%>" width="100">
+                        </td>
+                        <td>
+                            <button class="btn btn-warning"><a href="/editStud?id=<%= id%>">Edit</a></button>
+                            <button class="btn btn-danger"><a href="/deleteStud/<%= id%>">Delete</a></button>
                         </td>
                     </tr>
 
                     <% })%>
             </tbody>
         </table>
+
+        <br>
+        <a href="/">Add Students</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
