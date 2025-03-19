@@ -3,6 +3,7 @@ const db = require('./config/db');
 const student = require('./models/students');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const port = 8000;
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 })
 
 // Insert
-app.post('/studOperation', upload.single('image'), (req, res) => {
+app.post('/studOperation', upload.single('image'), async (req, res) => {
 
     const { id, name, age, course } = req.body;
 
@@ -40,17 +41,45 @@ app.post('/studOperation', upload.single('image'), (req, res) => {
     }
 
     if (id) {
-        student.findByIdAndUpdate(id, {
-            name: name,
-            age: age,
-            course: course,
-        }).then(() => {
-            console.log("Data is Updated");
-            res.redirect('/fetch');
-        }).catch((err) => {
-            console.log(err);
-        });
+        // Edit
+
+        const data = await student.findById(id);
+
+        if (image) {
+            console.log("New Image");
+
+            fs.unlinkSync(data.image)
+
+            student.findByIdAndUpdate(id, {
+                name: name,
+                age: age,
+                course: course,
+                image: image,
+            }).then(() => {
+                console.log("Data is Updated");
+                res.redirect('/fetch');
+            }).catch((err) => {
+                console.log(err);
+            });
+
+        } else {
+            console.log("Old Image");
+
+            student.findByIdAndUpdate(id, {
+                name: name,
+                age: age,
+                course: course,
+                image: data.image,
+            }).then(() => {
+                console.log("Data is Updated");
+                res.redirect('/fetch');
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+
     } else {
+        // Insert
         student.create({
             name: name,
             age: age,
@@ -81,10 +110,16 @@ app.get('/fetch', (req, res) => {
 })
 
 // Delete
-app.get('/deleteStud/:id', (req, res) => {
+app.get('/deleteStud/:id', async (req, res) => {
     // const id = req.query.id;
     const id = req.params.id;
     console.log("Delete ID", id);
+
+    const data = await student.findById(id);
+
+    console.log(data);
+
+    fs.unlinkSync(data.image);
 
     student.findByIdAndDelete(id).then(() => {
         console.log("Deleted Succussfully..");
