@@ -10,7 +10,12 @@ const aboutPage = (req, res) => {
     res.render('about');
 }
 
+const contactPage = (req, res) => {
+    res.render('contact');
+}
+
 module.exports = {
     postPage,
-    aboutPage
+    aboutPage,
+    contactPage
 }
