@@ -7,6 +7,7 @@ const port = 8000;
 app.set('view engine', 'ejs');
 
 app.use('/', require('./routes'));
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, (err) => {
     if (err) {

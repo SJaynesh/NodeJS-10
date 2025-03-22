@@ -10,6 +10,6 @@ route.get('/', postCTR.postPage);
 route.get('/about', postCTR.aboutPage);
 route.get('/contact', postCTR.contactPage);
 
-route.use('/employee', require('../routes/employee'));
+route.use('/employee', require('./employee'));
 
 module.exports = route;
