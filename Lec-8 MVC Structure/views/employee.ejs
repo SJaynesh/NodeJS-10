@@ -19,6 +19,36 @@
                 <td><input type="password" name="password" placeholder="enter password"></td>
             </tr>
             <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                </td>
+            </tr>
+            <tr>
+                <td>Hobby</td>
+                <td><input type="checkbox" name="hobby" value="Reading"> Reading
+                    <input type="checkbox" name="hobby" value="Coding"> Coding
+                    <input type="checkbox" name="hobby" value="Eating"> Eating
+                </td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <select name="city">
+                        <option value="">--Select--</option>
+                        <% let city=["Surat","Baroda", "Rajkot" , "Bhavanagar" ];%>
+
+                            <% city.map((data)=> { %>
+
+                                <option value="<%= data %>">
+                                    <%= data %>
+                                </option>
+
+                                <% }) %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td></td>
                 <td><input type="submit" name="submit" value="Add EMP"></td>
             </tr>
@@ -32,6 +62,9 @@
         <tr>
             <th>Name</th>
             <th>Password</th>
+            <th>Gender</th>
+            <th>Hobby</th>
+            <th>City</th>
             <th>Action</th>
         </tr>
 
@@ -42,6 +75,15 @@
                 </td>
                 <td>
                     <%= data.password %>
+                </td>
+                <td>
+                    <%= data.gender %>
+                </td>
+                <td>
+                    <%= data.hobby %>
+                </td>
+                <td>
+                    <%= data.city %>
                 </td>
                 <td>
                     <button><a href="/employee/upEMP/<%= data.id %>"

@@ -1,13 +1,22 @@
-const { name } = require('ejs');
 const emp = require('../models/employeeModel');
 
 const empPage = async (req, res) => {
 
-    const records = await emp.find({});
+    try {
+        const records = await emp.find({});
 
-    // console.log(records);
+        console.log(records);
 
-    res.render('employee', { records })
+        res.render('employee', { records })
+
+        // console.log(10 / 0);
+    } catch (e) {
+        console.log(e);
+        // console.log("Cannot divide by ZERO");
+        res.render('exception', { e });
+    }
+
+
 }
 
 const insertEMP = async (req, res) => {
