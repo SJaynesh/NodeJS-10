@@ -26,7 +26,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="post" action="/insertAdminData"
+                            enctype="multipart/form-data">
                             <div class="card-body">
                                 <h4 class="card-title">Admin Info</h4>
                                 <!-- First Name  -->
@@ -35,7 +36,7 @@
                                         Name</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="fname" name="fname"
-                                            placeholder="First Name Here" />
+                                            placeholder="First Name Here" required />
                                     </div>
                                 </div>
                                 <!-- Last Name  -->
@@ -44,7 +45,7 @@
                                         Name</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="lname" name="lname"
-                                            placeholder="Last Name Here" />
+                                            placeholder="Last Name Here" required />
                                     </div>
                                 </div>
                                 <!-- Email  -->
@@ -53,7 +54,7 @@
                                         class="col-sm-3 text-end control-label col-form-label">Email</label>
                                     <div class="col-sm-9">
                                         <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="Email Here" />
+                                            placeholder="Email Here" required />
                                     </div>
                                 </div>
                                 <!-- Password  -->
@@ -62,7 +63,7 @@
                                         class="col-sm-3 text-end control-label col-form-label">Password</label>
                                     <div class="col-sm-9">
                                         <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Password Here" />
+                                            placeholder="Password Here" required />
                                     </div>
                                 </div>
                                 <!-- Gender  -->
@@ -132,7 +133,7 @@
                                     <label for="cono1"
                                         class="col-sm-3 text-end control-label col-form-label">Message</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control" name="desc"></textarea>
                                     </div>
                                 </div>
 
@@ -156,7 +157,7 @@
                                 <!-- Add Admin Button  -->
                                 <div class="border-top">
                                     <div class="card-body">
-                                        <button type="button" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary">
                                             Add Admin
                                         </button>
                                     </div>
