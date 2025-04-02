@@ -9,8 +9,15 @@ const addAdminPage = (req, res) => {
     res.render('addAdmin');
 }
 
-const viewAdminPage = (req, res) => {
-    res.render('viewAdmin');
+const viewAdminPage = async (req, res) => {
+
+    try {
+        const records = await admin.find({});
+
+        res.render('viewAdmin', { records });
+    } catch (e) {
+        res.send(`<p> Not Found : ${e} </p>`);
+    }
 }
 
 // CRUD
@@ -20,10 +27,8 @@ const insertAdminData = async (req, res) => {
 
     console.log(req.file);
 
-
     try {
         req.body.avatar = req.file.path;
-
 
         const insert = await admin.create(req.body);
 
@@ -32,12 +37,10 @@ const insertAdminData = async (req, res) => {
         } else {
             console.log("Admin Data is not insertion...");
         }
+        res.redirect('/addAdmin');
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
     }
-
-
-    res.redirect('/addAdmin');
 }
 
 module.exports = {

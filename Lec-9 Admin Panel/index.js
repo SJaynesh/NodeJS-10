@@ -8,6 +8,7 @@ const port = 8000;
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(express.urlencoded({ extended: true }));
 
