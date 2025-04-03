@@ -76,12 +76,12 @@
                                         </td>
                                         <td><img src="<%= data.avatar %>" height="100"></td>
                                         <td>
-                                            <button type="submit" class="btn btn-warning">
-                                                <a href="/updateAdmin" style="color: white;"> Update </a>
-                                            </button>
-                                            <button type="submit" class="btn btn-danger">
-                                                <a href="/deleteAdmin/<%= data.id %>" style="color: white;">Delete</a>
-                                            </button>
+                                            <a href="/updateAdmin/?id=<%= data.id %>" style="color: green;"> <i
+                                                    class="me-2 mdi mdi-border-color"></i>
+                                            </a>
+                                            <a href="/deleteAdmin/<%= data.id %>" style="color: red;"><i
+                                                    class="me-2 mdi mdi-delete"></i></a>
+
                                         </td>
                                     </tr>
                                     <% }) %>

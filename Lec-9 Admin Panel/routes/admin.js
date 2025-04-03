@@ -17,7 +17,7 @@ const route = express.Router();
 
 console.log("Routing...");
 
-const { dashboardPage, addAdminPage, viewAdminPage, insertAdminData } = require('../controllers/adminController');
+const { dashboardPage, addAdminPage, viewAdminPage, insertAdminData, deleteAdmin, updateAdmin, editAdmin } = require('../controllers/adminController');
 
 route.get('/', dashboardPage);
 
@@ -26,5 +26,11 @@ route.get('/viewAdmin', viewAdminPage);
 
 // CRUD Operation
 route.post('/insertAdminData', upload.single('avatar'), insertAdminData);
+
+route.get('/deleteAdmin/:delId', deleteAdmin);
+
+route.get('/updateAdmin', updateAdmin);
+
+route.post('/editAdmin/:editId', editAdmin);
 
 module.exports = route;
