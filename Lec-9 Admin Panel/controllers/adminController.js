@@ -1,24 +1,74 @@
 const admin = require('../models/AdminModel');
 const fs = require('fs');
 
+const loginPage = (req, res) => {
+    // res.cookie('admin', "Jaynesh");
+
+    console.log(req.cookies.admin);
+    if (req.cookies.admin == undefined) {
+        res.render('login');
+    } else {
+        res.redirect('/dashboard')
+    }
+}
+
+const userChecked = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await admin.findOne({ email: email });
+
+        if (user) {
+            if (user.password == password) {
+                console.log("Login Successfully...");
+
+                res.cookie('admin', user);
+                res.redirect('/dashboard');
+            } else {
+                console.log("Password not matched");
+
+                res.redirect('/');
+            }
+        } else {
+            console.log("Email not matched");
+            res.redirect('/');
+        }
+    } catch (e) {
+        res.send(`<p> Not Found : ${e} </p>`);
+    }
+    // res.redirect('/dashboard');
+}
 
 const dashboardPage = (req, res) => {
-    res.render('dashboard');
+    if (req.cookies.admin == undefined) {
+        res.redirect('/');
+    } else {
+        res.render('dashboard');
+    }
 }
 
 const addAdminPage = (req, res) => {
-    res.render('addAdmin');
+    if (req.cookies.admin == undefined) {
+        res.redirect('/');
+    } else {
+        res.render('addAdmin');
+    }
 }
 
 const viewAdminPage = async (req, res) => {
 
-    try {
-        const records = await admin.find({});
+    if (req.cookies.admin == undefined) {
+        res.redirect('/');
+    } else {
+        try {
+            const records = await admin.find({});
 
-        res.render('viewAdmin', { records });
-    } catch (e) {
-        res.send(`<p> Not Found : ${e} </p>`);
+            res.render('viewAdmin', { records });
+        } catch (e) {
+            res.send(`<p> Not Found : ${e} </p>`);
+        }
     }
+
 }
 
 // CRUD
@@ -112,6 +162,8 @@ const editAdmin = async (req, res) => {
 }
 
 module.exports = {
+    loginPage,
+    userChecked,
     dashboardPage,
     addAdminPage,
     viewAdminPage,

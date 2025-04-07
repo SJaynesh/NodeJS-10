@@ -17,9 +17,13 @@ const route = express.Router();
 
 console.log("Routing...");
 
-const { dashboardPage, addAdminPage, viewAdminPage, insertAdminData, deleteAdmin, updateAdmin, editAdmin } = require('../controllers/adminController');
+const { loginPage, userChecked, dashboardPage, addAdminPage, viewAdminPage, insertAdminData, deleteAdmin, updateAdmin, editAdmin } = require('../controllers/adminController');
 
-route.get('/', dashboardPage);
+route.get('/', loginPage);
+
+route.post('/login', userChecked);
+
+route.get('/dashboard', dashboardPage);
 
 route.get('/addAdmin', addAdminPage);
 route.get('/viewAdmin', viewAdminPage);
