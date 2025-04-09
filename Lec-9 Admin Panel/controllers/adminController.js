@@ -1,6 +1,8 @@
 const admin = require('../models/AdminModel');
 const fs = require('fs');
 
+// Login
+
 const loginPage = (req, res) => {
     // res.cookie('admin', "Jaynesh");
 
@@ -39,11 +41,35 @@ const userChecked = async (req, res) => {
     // res.redirect('/dashboard');
 }
 
+// Logout 
+const logout = (req, res) => {
+    res.clearCookie('admin');
+    res.redirect('/')
+}
+
+// Change Password
+
+const changePassword = (req, res) => {
+    const currentAdmin = req.cookies.admin;
+    res.render('changePassword.ejs', { currentAdmin });
+}
+
+const changeMyNewPassword = (req, res) => {
+    console.log(req.body);
+
+    res.redirect('/');
+}
+
+// DashBoard
+
 const dashboardPage = (req, res) => {
     if (req.cookies.admin == undefined) {
         res.redirect('/');
     } else {
-        res.render('dashboard');
+        const currentAdmin = req.cookies.admin;
+        console.log(currentAdmin);
+
+        res.render('dashboard', { currentAdmin });
     }
 }
 
@@ -51,7 +77,8 @@ const addAdminPage = (req, res) => {
     if (req.cookies.admin == undefined) {
         res.redirect('/');
     } else {
-        res.render('addAdmin');
+        const currentAdmin = req.cookies.admin;
+        res.render('addAdmin', { currentAdmin });
     }
 }
 
@@ -62,8 +89,9 @@ const viewAdminPage = async (req, res) => {
     } else {
         try {
             const records = await admin.find({});
+            const currentAdmin = req.cookies.admin;
 
-            res.render('viewAdmin', { records });
+            res.render('viewAdmin', { records, currentAdmin });
         } catch (e) {
             res.send(`<p> Not Found : ${e} </p>`);
         }
@@ -171,4 +199,7 @@ module.exports = {
     deleteAdmin,
     updateAdmin,
     editAdmin,
+    logout,
+    changePassword,
+    changeMyNewPassword
 }
