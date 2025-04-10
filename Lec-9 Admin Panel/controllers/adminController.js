@@ -88,8 +88,13 @@ const viewAdminPage = async (req, res) => {
         res.redirect('/');
     } else {
         try {
-            const records = await admin.find({});
+            let records = await admin.find({});
             const currentAdmin = req.cookies.admin;
+
+            records = records.filter((data) => data.id != currentAdmin._id);
+
+            console.log("User Data", records);
+
 
             res.render('viewAdmin', { records, currentAdmin });
         } catch (e) {
