@@ -17,7 +17,7 @@ const route = express.Router();
 
 console.log("Routing...");
 
-const { loginPage, userChecked, dashboardPage, addAdminPage, viewAdminPage, insertAdminData, deleteAdmin, updateAdmin, editAdmin, logout, changePassword, changeMyNewPassword } = require('../controllers/adminController');
+const { loginPage, userChecked, dashboardPage, addAdminPage, viewAdminPage, insertAdminData, deleteAdmin, updateAdmin, editAdmin, logout, changePassword, changeMyNewPassword, viewProfile } = require('../controllers/adminController');
 
 route.get('/', loginPage);
 
@@ -34,6 +34,9 @@ route.get('/logout', logout);
 // Change Password
 route.get('/changePassword', changePassword);
 route.post('/changeMyNewPassword', changeMyNewPassword);
+
+// View Profile
+route.get('/viewProfile', viewProfile);
 
 // CRUD Operation
 route.post('/insertAdminData', upload.single('avatar'), insertAdminData);

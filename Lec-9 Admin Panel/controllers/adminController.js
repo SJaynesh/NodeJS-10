@@ -51,13 +51,59 @@ const logout = (req, res) => {
 
 const changePassword = (req, res) => {
     const currentAdmin = req.cookies.admin;
-    res.render('changePassword.ejs', { currentAdmin });
+    if (currentAdmin != undefined) {
+        res.render('changePassword.ejs', { currentAdmin });
+    } else {
+        res.redirect('/');
+    }
 }
 
-const changeMyNewPassword = (req, res) => {
+const changeMyNewPassword = async (req, res) => {
     console.log(req.body);
 
-    res.redirect('/');
+    const { currentPassword, newPassword, conformPassword } = req.body;
+
+    const myAdmin = req.cookies.admin;
+
+    if (currentPassword == myAdmin.password) {
+        if (newPassword != myAdmin.password) {
+            if (newPassword == conformPassword) {
+                try {
+                    const isUpdate = await admin.findByIdAndUpdate(myAdmin._id, { password: newPassword });
+                    if (isUpdate) {
+                        console.log("Password updated...", isUpdate);
+                        res.clearCookie('admin');
+                        res.redirect('/');
+                    } else {
+                        console.log("Password updation failed...");
+
+                    }
+                } catch (e) {
+                    res.send(`<p> Not Found : ${e} </p>`);
+                }
+            } else {
+                res.redirect('/changePassword');
+            }
+        } else {
+            res.redirect('/changePassword');
+        }
+    } else {
+        console.log("Password is incorrect............");
+
+        res.redirect('/changePassword');
+    }
+
+}
+
+// View Profile 
+
+const viewProfile = (req, res) => {
+    const currentAdmin = req.cookies.admin;
+    if (currentAdmin != undefined) {
+        res.render('profile', { currentAdmin });
+    } else {
+        res.redirect('/');
+    }
 }
 
 // DashBoard
@@ -157,9 +203,10 @@ const updateAdmin = async (req, res) => {
 
     try {
         const data = await admin.findById(updateId);
+        const currentAdmin = req.cookies.admin;
 
         if (data) {
-            res.render('updateAdmin', { data });
+            res.render('updateAdmin', { data, currentAdmin });
         } else {
             console.log("Single Record not found...");
 
@@ -206,5 +253,6 @@ module.exports = {
     editAdmin,
     logout,
     changePassword,
-    changeMyNewPassword
+    changeMyNewPassword,
+    viewProfile
 }
