@@ -5,37 +5,12 @@ const nodemailer = require('nodemailer');
 // Login
 
 const loginPage = (req, res) => {
-    // res.cookie('admin', "Jaynesh");
-
-    console.log(req.cookies.admin);
-    if (req.cookies.admin == undefined) {
-        res.render('login');
-    } else {
-        res.redirect('/dashboard')
-    }
+    res.render('login');
 }
 
 const userChecked = async (req, res) => {
-    const { email, password } = req.body;
-
     try {
-        const user = await admin.findOne({ email: email });
-
-        if (user) {
-            if (user.password == password) {
-                console.log("Login Successfully...");
-
-                res.cookie('admin', user);
-                res.redirect('/dashboard');
-            } else {
-                console.log("Password not matched");
-
-                res.redirect('/');
-            }
-        } else {
-            console.log("Email not matched");
-            res.redirect('/');
-        }
+        res.redirect('/dashboard');
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
     }
@@ -235,19 +210,19 @@ const checkNewPassword = async (req, res) => {
 
 // Logout 
 const logout = (req, res) => {
-    res.clearCookie('admin');
-    res.redirect('/')
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+            return false
+        }
+        res.redirect('/')
+    })
 }
 
 // Change Password
 
 const changePassword = (req, res) => {
-    const currentAdmin = req.cookies.admin;
-    if (currentAdmin != undefined) {
-        res.render('changePassword.ejs', { currentAdmin });
-    } else {
-        res.redirect('/');
-    }
+    res.render('changePassword.ejs');
 }
 
 const changeMyNewPassword = async (req, res) => {
@@ -255,7 +230,10 @@ const changeMyNewPassword = async (req, res) => {
 
     const { currentPassword, newPassword, conformPassword } = req.body;
 
-    const myAdmin = req.cookies.admin;
+    const myAdmin = req.user;
+
+    console.log(myAdmin);
+
 
     if (currentPassword == myAdmin.password) {
         if (newPassword != myAdmin.password) {
@@ -264,8 +242,14 @@ const changeMyNewPassword = async (req, res) => {
                     const isUpdate = await admin.findByIdAndUpdate(myAdmin._id, { password: newPassword });
                     if (isUpdate) {
                         console.log("Password updated...", isUpdate);
-                        res.clearCookie('admin');
-                        res.redirect('/');
+                        req.session.destroy(function (err) {
+                            if (err) {
+                                console.log(err);
+                                return false;
+                            }
+                            res.redirect('/');
+                        })
+
                     } else {
                         console.log("Password updation failed...");
 
@@ -290,56 +274,33 @@ const changeMyNewPassword = async (req, res) => {
 // View Profile 
 
 const viewProfile = (req, res) => {
-    const currentAdmin = req.cookies.admin;
-    if (currentAdmin != undefined) {
-        res.render('profile', { currentAdmin });
-    } else {
-        res.redirect('/');
-    }
+    const currentAdmin = req.user;
+    res.render('profile', { currentAdmin });
 }
 
 // DashBoard
 
 const dashboardPage = (req, res) => {
-    if (req.cookies.admin == undefined) {
-        res.redirect('/');
-    } else {
-        const currentAdmin = req.cookies.admin;
-        console.log(currentAdmin);
-
-        res.render('dashboard', { currentAdmin });
-    }
+    res.render('dashboard');
 }
 
 const addAdminPage = (req, res) => {
-    if (req.cookies.admin == undefined) {
-        res.redirect('/');
-    } else {
-        const currentAdmin = req.cookies.admin;
-        res.render('addAdmin', { currentAdmin });
-    }
+    res.render('addAdmin');
 }
 
 const viewAdminPage = async (req, res) => {
+    try {
+        let records = await admin.find({});
 
-    if (req.cookies.admin == undefined) {
-        res.redirect('/');
-    } else {
-        try {
-            let records = await admin.find({});
-            const currentAdmin = req.cookies.admin;
+        // records = records.filter((data) => data.id != currentAdmin._id);
 
-            records = records.filter((data) => data.id != currentAdmin._id);
-
-            console.log("User Data", records);
+        // console.log("User Data", records);
 
 
-            res.render('viewAdmin', { records, currentAdmin });
-        } catch (e) {
-            res.send(`<p> Not Found : ${e} </p>`);
-        }
+        res.render('viewAdmin', { records });
+    } catch (e) {
+        res.send(`<p> Not Found : ${e} </p>`);
     }
-
 }
 
 // CRUD
@@ -395,10 +356,9 @@ const updateAdmin = async (req, res) => {
 
     try {
         const data = await admin.findById(updateId);
-        const currentAdmin = req.cookies.admin;
 
         if (data) {
-            res.render('updateAdmin', { data, currentAdmin });
+            res.render('updateAdmin', { data });
         } else {
             console.log("Single Record not found...");
 

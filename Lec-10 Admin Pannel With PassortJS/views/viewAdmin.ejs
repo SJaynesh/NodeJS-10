@@ -26,9 +26,7 @@
                         <div class="card-body">
                             <h5 class="card-title mb-0">Static Table</h5>
                         </div>
-
-                        <% if(currentAdmin._id=="67f74b019b5e7b1b50b07905" ) { %>
-
+                        <% if(locals.currentAdmin.id=='67f74b019b5e7b1b50b07905' ) { %>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -94,7 +92,9 @@
                                         <% }) %>
                                 </tbody>
                             </table>
-                            <% } else { %>
+
+                            <% }else { %>
+
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -102,13 +102,12 @@
                                             <th scope="col">First Name</th>
                                             <th scope="col">Last Name</th>
                                             <th scope="col">Email</th>
-                                            <!-- <th scope="col">Password</th> -->
+                                            <th scope="col">Password</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Hobby</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Avatar</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,9 +127,9 @@
                                                 <td>
                                                     <%= data.email %>
                                                 </td>
-                                                <!-- <td>
-                                                    ******
-                                                </td> -->
+                                                <td>
+                                                    <%= data.password %>
+                                                </td>
                                                 <td>
                                                     <%= data.gender %>
                                                 </td>
@@ -144,7 +143,6 @@
                                                     <%= data.desc %>
                                                 </td>
                                                 <td><img src="<%= data.avatar %>" height="100"></td>
-
                                             </tr>
 
 
@@ -152,11 +150,7 @@
                                     </tbody>
                                 </table>
 
-                                <% } %>
-
-
-
-
+                                <% }%>
                     </div>
                 </div>
             </div>
