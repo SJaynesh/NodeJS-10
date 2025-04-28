@@ -1,5 +1,5 @@
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;  // constructor
+const localStrategy = require('passport-local').Strategy;  // constructor username , password
 
 const admin = require('../models/AdminModel');
 

@@ -15,6 +15,26 @@
                             </ol>
                         </nav>
                     </div>
+
+                    <% if(success && success.length>0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Huuu 😎😋!</strong>
+                            <%= success %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <%}%>
+
+                            <% if(error && error.length>0) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error ⚠!</strong>
+                                    <%= error %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+
+                                <%}%>
                 </div>
             </div>
         </div>
@@ -26,7 +46,7 @@
                         <div class="card-body">
                             <h5 class="card-title mb-0">Static Table</h5>
                         </div>
-                        <% if(locals.currentAdmin.id=='67f74b019b5e7b1b50b07905' ) { %>
+                        <% if(locals.currentAdmin.email=='rw5.jaynesh.pc@gmail.com' ) { %>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -102,7 +122,6 @@
                                             <th scope="col">First Name</th>
                                             <th scope="col">Last Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Password</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Hobby</th>
                                             <th scope="col">City</th>
@@ -126,9 +145,6 @@
                                                 </td>
                                                 <td>
                                                     <%= data.email %>
-                                                </td>
-                                                <td>
-                                                    <%= data.password %>
                                                 </td>
                                                 <td>
                                                     <%= data.gender %>

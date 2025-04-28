@@ -10,6 +10,7 @@ const loginPage = (req, res) => {
 
 const userChecked = async (req, res) => {
     try {
+        req.flash('success', "Admin Login Successfully...");
         res.redirect('/dashboard');
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
@@ -281,11 +282,14 @@ const viewProfile = (req, res) => {
 // DashBoard
 
 const dashboardPage = (req, res) => {
-    res.render('dashboard');
+
+    res.render('dashboard', { success: req.flash('success'), error: req.flash('error') });
 }
 
 const addAdminPage = (req, res) => {
-    res.render('addAdmin');
+    const success = req.flash('success');
+    const error = req.flash('error');
+    res.render('addAdmin', { success: success, error: error });
 }
 
 const viewAdminPage = async (req, res) => {
@@ -296,8 +300,18 @@ const viewAdminPage = async (req, res) => {
 
         // console.log("User Data", records);
 
+        records = records.filter((data) => data.id != req.user.id);
 
-        res.render('viewAdmin', { records });
+        console.log(records);
+
+
+        const success = req.flash('success');
+        const error = req.flash('error');
+
+
+
+
+        res.render('viewAdmin', { records, success, error });
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
     }
@@ -316,10 +330,13 @@ const insertAdminData = async (req, res) => {
         const insert = await admin.create(req.body);
 
         if (insert) {
+            req.flash("success", "New Admin Inserted...");
             console.log("Admin Data is Inserted...");
         } else {
+            req.flash("error", "New Admin Insertion Failed...");
             console.log("Admin Data is not insertion...");
         }
+
         res.redirect('/addAdmin');
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
@@ -338,7 +355,13 @@ const deleteAdmin = async (req, res) => {
 
             fs.unlinkSync(data.avatar);
 
-            await admin.findByIdAndDelete(delId);
+            const deletedData = await admin.findByIdAndDelete(delId);
+
+            if (deletedData) {
+                req.flash('success', `${deletedData.fname} deleted successfully...`);
+            } else {
+                req.flash('error', `${deletedData.fname} deletion failed...`);
+            }
 
             res.redirect('/viewAdmin');
         } else {
