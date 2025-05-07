@@ -2,16 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const passport = require('passport');
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/");
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname);
-    }
-});
-
-const upload = multer({ storage: storage }); // Middlware
+const upload = require("../middleware/adminMulter")
 
 
 const route = express.Router();
@@ -59,5 +50,9 @@ route.get('/deleteAdmin/:delId', passport.checkAuthentication, deleteAdmin);
 route.get('/updateAdmin', passport.checkAuthentication, updateAdmin);
 
 route.post('/editAdmin/:editId', editAdmin);
+
+
+route.use('/category', passport.checkAuthentication, require('./category'));
+route.use('/subcategory', passport.checkAuthentication, require('./subcategory'))
 
 module.exports = route;

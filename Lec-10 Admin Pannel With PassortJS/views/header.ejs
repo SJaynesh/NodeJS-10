@@ -13,11 +13,11 @@
   <meta name="robots" content="noindex,nofollow" />
   <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png" />
   <!-- Custom CSS -->
-  <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+  <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
   <!-- Custom CSS -->
-  <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <link href="../../dist/css/style.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -167,13 +167,13 @@
             <b class="logo-icon ps-2">
               <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
               <!-- Dark Logo icon -->
-              <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" width="25" />
+              <img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" width="25" />
             </b>
             <!--End Logo icon -->
             <!-- Logo text -->
             <span class="logo-text ms-2">
               <!-- dark Logo text -->
-              <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" />
+              <img src="../../assets/images/logo-text.png" alt="homepage" class="light-logo" />
             </span>
             <!-- Logo icon -->
             <!-- <b class="logo-icon"> -->
@@ -360,7 +360,7 @@
                     waves-effect waves-dark
                     pro-pic
                   " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31" />
+                <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31" />
               </a>
               <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account me-1 ms-1"></i>
@@ -398,12 +398,14 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
           <ul id="sidebarnav" class="pt-4">
+            <!-- Dashboard -->
             <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/dashboard" aria-expanded="false"><i
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/dashboard" aria-expanded="true"><i
                   class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
             </li>
 
 
+            <!-- Admin  -->
             <li class="sidebar-item">
               <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                 aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Admin </span></a>
@@ -417,6 +419,43 @@
                   <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewAdmin"
                     aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">View
                       Admin</span></a>
+                </li>
+              </ul>
+            </li>
+
+
+            <!-- Category -->
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
+                  class="mdi mdi-chart-bubble"></i><span class="hide-menu">Category</span></a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="/category/addCategoryPage" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span
+                      class="hide-menu"></span>
+                    Add Category </span></a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category/viewCategoryPage"
+                    aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">View
+                      Category</span></a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- SubCategory -->
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" aria-expanded="false"><i
+                  class="mdi mdi-chart-bubble"></i><span class="hide-menu">SubCategory</span></a>
+              <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a href="/subcategory/addSubCategoryPage" class="sidebar-link"><i
+                      class="mdi mdi-note-outline"></i><span class="hide-menu"></span>
+                    Add SubCategory </span></a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/category/viewCategoryPage"
+                    aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">View
+                      SubCategory</span></a>
                 </li>
               </ul>
             </li>

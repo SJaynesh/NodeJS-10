@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 // Login
 
 const loginPage = (req, res) => {
-    res.render('login');
+    res.render('auth/login');
 }
 
 const userChecked = async (req, res) => {
@@ -41,10 +41,7 @@ const checkEmail = async (req, res) => {
 
         // Init Mail
         const transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
-            port: 587,
             service: "gmail",
-            secure: false, // true for port 465, false for other ports
             auth: {
                 user: "rw5.jaynesh.pc@gmail.com",
                 pass: "cbsrmclmeravauug",
@@ -159,6 +156,7 @@ const checkOTP = (req, res) => {
 
 
     if (req.body.OTP == req.cookies.OTP) {
+        res.clearCookie('OTP');
         res.redirect('/newSetPasswordPage');
     } else {
         res.redirect('back');
@@ -185,7 +183,7 @@ const checkNewPassword = async (req, res) => {
                     console.log("Password Updated...");
 
                     res.clearCookie('email');
-                    res.clearCookie('OTP');
+
                     res.redirect('/');
 
                 } else {
@@ -223,7 +221,7 @@ const logout = (req, res) => {
 // Change Password
 
 const changePassword = (req, res) => {
-    res.render('changePassword.ejs');
+    res.render('admin/changePassword', { success: "", error: "" });
 }
 
 const changeMyNewPassword = async (req, res) => {
@@ -276,7 +274,7 @@ const changeMyNewPassword = async (req, res) => {
 
 const viewProfile = (req, res) => {
     const currentAdmin = req.user;
-    res.render('profile', { currentAdmin });
+    res.render('admin/profile', { currentAdmin, success: "", error: "" });
 }
 
 // DashBoard
@@ -289,7 +287,7 @@ const dashboardPage = (req, res) => {
 const addAdminPage = (req, res) => {
     const success = req.flash('success');
     const error = req.flash('error');
-    res.render('addAdmin', { success: success, error: error });
+    res.render('admin/addAdmin', { success: success, error: error });
 }
 
 const viewAdminPage = async (req, res) => {
@@ -311,7 +309,7 @@ const viewAdminPage = async (req, res) => {
 
 
 
-        res.render('viewAdmin', { records, success, error });
+        res.render('admin/viewAdmin', { records, success, error });
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
     }
@@ -337,7 +335,7 @@ const insertAdminData = async (req, res) => {
             console.log("Admin Data is not insertion...");
         }
 
-        res.redirect('/addAdmin');
+        res.redirect('back');
     } catch (e) {
         res.send(`<p> Not Found : ${e} </p>`);
     }
@@ -363,7 +361,7 @@ const deleteAdmin = async (req, res) => {
                 req.flash('error', `${deletedData.fname} deletion failed...`);
             }
 
-            res.redirect('/viewAdmin');
+            res.redirect('back');
         } else {
             console.log("Single Record not found....");
 
@@ -381,7 +379,7 @@ const updateAdmin = async (req, res) => {
         const data = await admin.findById(updateId);
 
         if (data) {
-            res.render('updateAdmin', { data });
+            res.render('admin/updateAdmin', { data, success: "", error: "" });
         } else {
             console.log("Single Record not found...");
 
