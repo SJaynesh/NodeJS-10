@@ -1,5 +1,6 @@
 const category = require("../models/CategoryModel");
 const subCategory = require("../models/SubCategoryModel");
+const extracategory = require("../models/ExtraCategoryModel");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
@@ -62,7 +63,11 @@ const deleteCategory = async (req, res) => {
       category_id: req.params.id,
     });
 
-    if (subCategoryDeleteData) {
+    const extraCategoryDeleteData = await extracategory.deleteMany({
+      category_id: req.params.id,
+    });
+
+    if (subCategoryDeleteData && extraCategoryDeleteData) {
       const deleteData = await category.findByIdAndDelete({
         _id: req.params.id,
       });
