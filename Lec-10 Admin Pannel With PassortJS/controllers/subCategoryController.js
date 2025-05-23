@@ -1,6 +1,7 @@
 const category = require("../models/CategoryModel");
 const subCategory = require("../models/SubCategoryModel");
 const extraCategory = require("../models/ExtraCategoryModel");
+const products = require("../models/productModel");
 
 // Add SubCategory Page
 const addSubCategoryPage = async (req, res) => {
@@ -71,6 +72,10 @@ const deleteSubCategory = async (req, res) => {
   try {
     const deletExtraCategory = await extraCategory.deleteMany({
       subCategory_id: deleteId,
+    });
+
+    const productDeleteData = await products.deleteMany({
+      subcategory_id: req.params.id,
     });
 
     if (deletExtraCategory) {

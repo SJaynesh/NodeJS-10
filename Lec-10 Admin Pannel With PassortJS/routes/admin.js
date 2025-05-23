@@ -98,4 +98,6 @@ route.use(
   require("./extracategory")
 );
 
+route.use("/product", passport.checkAuthentication, require("./product"));
+
 module.exports = route;
