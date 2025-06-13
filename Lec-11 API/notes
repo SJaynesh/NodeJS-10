@@ -1,0 +1,35 @@
+CRUD Operation :
+
+* Users (name, email, password)
+
+GET : To fetch all users list
+
+POST : To create new users  (data)
+
+PATCH : To update single users using uniqe id
+
+PUT : To update Whole data 
+
+DELETE : To delete users data using id
+
+
+
+* Students
+
+https://locahost:8000/students/addStud
+
+- firstName
+- lastName
+- email
+- password
+- phone
+- gender
+- hobby
+- city
+- desc
+
+- created_date
+- updated_date
+
+- image
+

@@ -23,4 +23,6 @@ route.patch("/users/:id", updateUser);
 // Delete User
 route.delete("/users/:id", deleteUser);
 
+route.use("/students", require("./studentRouter"));
+
 module.exports = route;
