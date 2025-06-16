@@ -1,0 +1,65 @@
+CRUD Operation :
+
+
+* Users (name, email, password)
+
+    GET : To fetch all users list
+
+    POST : To create new users (data)
+
+    PATCH : To update single users using uniqe id
+
+    PUT : To update Whole data
+
+    DELETE : To delete users data using id
+
+
+
+*  Students
+
+    https://locahost:8000/students/addStud
+    https://locahost:8000/students/fetchStud
+    https://locahost:8000/students/deleteStud/id
+    https://locahost:8000/students/updateStud/id
+    http://localhost:8000/students/fetchSingleStud/id
+
+    Update :
+
+            if (Image) {
+                Old Image Delete
+                New Image Add
+            }
+
+    - firstName
+    - lastName
+    - email
+    - password
+    - phone
+    - gender
+    - hobby
+    - city
+    - desc
+
+    - created_date
+    - updated_date
+
+    - image
+
+
+* Login / Register
+
+    - Register 
+        - userName
+        - email 
+        - password
+
+    - Login
+        - email/userName
+        - password
+
+
+* JWT (JSON Web Token)
+
+
+
+

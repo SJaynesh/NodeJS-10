@@ -4,25 +4,8 @@ const route = express.Router();
 
 console.log("Routing...");
 
-const {
-  fetchUser,
-  insertUser,
-  deleteUser,
-  updateUser,
-} = require("../controllers/usersController");
+route.use("/students", require("./studentRoute"));
 
-// Fetch All Users
-route.get("/users", fetchUser);
-
-// Add User
-route.post("/users", insertUser);
-
-// Update User
-route.patch("/users/:id", updateUser);
-
-// Delete User
-route.delete("/users/:id", deleteUser);
-
-route.use("/students", require("./studentRouter"));
+route.use("/user", require("./userRoute"));
 
 module.exports = route;
