@@ -2,7 +2,7 @@ const user = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const SECRATE = "SJaynesh@1232#^";
+const SECRET = "SJaynesh@1232#^";
 
 // Register User
 const registerUser = async (req, res) => {
@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
 
     if (userData) {
       if (await bcrypt.compare(req.body.password, userData.password)) {
-        const token = jwt.sign({ userData }, SECRATE);
+        const token = jwt.sign({ userData }, SECRET);
 
         res.status(201).json({
           login: true,
