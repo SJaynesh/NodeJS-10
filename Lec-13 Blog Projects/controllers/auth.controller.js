@@ -102,3 +102,23 @@ exports.deleteUser = async (req, res) => {
     });
   }
 };
+
+exports.updateUser = async (req, res) => {
+  try {
+    const updateUser = await user.findByIdAndUpdate(req.body.id, req.body);
+
+    updateUser
+      ? res
+          .status(200)
+          .json({ status: true, success: "User updated successfully..." })
+      : res
+          .status(401)
+          .json({ status: false, error: "User updation failed..." });
+  } catch (e) {
+    res.status(400).json({
+      status: false,
+      error: "Something went wrong...",
+      error_data: e,
+    });
+  }
+};

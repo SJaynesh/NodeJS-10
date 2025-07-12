@@ -7,6 +7,7 @@ const {
   login,
   users,
   deleteUser,
+  updateUser,
 } = require("../controllers/auth.controller");
 const auth = require("../middleware/auth.middleware");
 
@@ -18,5 +19,8 @@ route.get("/users", auth, users);
 
 // Delete User
 route.delete("/delete", auth, deleteUser);
+
+// Update User
+route.patch("/update", auth, updateUser);
 
 module.exports = route;
