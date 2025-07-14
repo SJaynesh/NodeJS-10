@@ -1,0 +1,117 @@
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by
+    <a href="https://www.wrappixel.com">WrapPixel</a>.
+</footer>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../../dist/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<!-- <script src="../dist/js/pages/dashboards/dashboard1.js"></script> -->
+<!-- Charts js Files -->
+<script src="../../assets/libs/flot/excanvas.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.pie.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.time.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.stack.js"></script>
+<script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
+<script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+
+<script>
+
+    <%if (success && success.length > 0) { %>
+
+        Swal.fire({
+            title: "Success!",
+            text: "<%= success%>",
+            icon: "success"
+        });
+
+
+        Toastify({
+            text: "<%= success%>",
+            duration: 5000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(135deg, #11998e , #38ef7d )",
+                color: "#fff",
+                fontFamily: "Arial, sans-serif",
+                fontSize: "16px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                padding: "12px 20px",
+                width: "300px",
+                margin: "20px", // Extra margin around toast
+            },
+            className: "login-toast",
+        }).showToast();
+
+
+<%}%>
+
+    
+<%if (error && error.length > 0) { %>
+
+        Swal.fire({
+            title: "Error!",
+            text: "<%= error%>",
+            icon: "error"
+        });
+
+
+        Toastify({
+            text: "<%= error%>",
+            duration: 5000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(135deg, #11998e , #38ef7d )",
+                color: "#fff",
+                fontFamily: "Arial, sans-serif",
+                fontSize: "16px",
+                borderRadius: "8px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+                padding: "12px 20px",
+                width: "300px",
+                margin: "20px", // Extra margin around toast
+            },
+            className: "login-toast",
+        }).showToast();
+
+
+<%}%>
+
+</script>
+</body>
+
+</html>

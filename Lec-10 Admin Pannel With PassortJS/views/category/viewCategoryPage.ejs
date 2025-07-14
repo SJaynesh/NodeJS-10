@@ -1,0 +1,92 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <% if(success && success.length>0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Huuu 😎😋!</strong>
+                            <%= success %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <%}%>
+
+                            <% if(error && error.length>0) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error ⚠!</strong>
+                                    <%= error %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+
+                                <%}%>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">Category Data</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Category Title</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <% records.map((data, index)=> { %>
+
+                                    <tr>
+                                        <th scope="row">
+                                            <%= index+1 %>
+                                        </th>
+                                        <td>
+                                            <%= data.c_title %>
+                                        </td>
+
+                                        <td><img src="../<%= data.c_image %>" height="100"></td>
+                                        <td>
+                                            <a href="/category/editCategoryPage/?id=<%= data.id %>"
+                                                style="color: green;">
+                                                <button class="btn btn-success">Edit</button>
+                                            </a>
+
+                                            <a href="/category/deleteCategory/<%= data.id %>"
+                                                style="color: red;"><button class="btn btn-danger">Delete</button></a>
+                                        </td>
+                                    </tr>
+
+
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('../footer') %>

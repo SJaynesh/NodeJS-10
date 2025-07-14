@@ -1,0 +1,176 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <% if(success && success.length>0) { %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Huuu 😎😋!</strong>
+                            <%= success %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <%}%>
+
+                            <% if(error && error.length>0) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error ⚠!</strong>
+                                    <%= error %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+
+                                <%}%>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">Admin Data</h5>
+                        </div>
+                        <% if(locals.currentAdmin.email=='rw5.jaynesh.pc@gmail.com' ) { %>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Hobby</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Avatar</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% records.map((data, index)=> { %>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <%= index+1 %>
+                                            </th>
+                                            <td>
+                                                <%= data.fname %>
+                                            </td>
+                                            <td>
+                                                <%= data.lname %>
+                                            </td>
+                                            <td>
+                                                <%= data.email %>
+                                            </td>
+                                            <td>
+                                                <%= data.password %>
+                                            </td>
+                                            <td>
+                                                <%= data.gender %>
+                                            </td>
+                                            <td>
+                                                <%= data.hobby %>
+                                            </td>
+                                            <td>
+                                                <%= data.city %>
+                                            </td>
+                                            <td>
+                                                <%= data.desc %>
+                                            </td>
+                                            <td><img src="<%= data.avatar %>" height="100"></td>
+                                            <td>
+                                                <a href="/updateAdmin/?id=<%= data.id %>" style="color: green;">
+                                                    <i class="me-2 mdi mdi-border-color"></i>
+                                                </a>
+
+                                                <a href="/deleteAdmin/<%= data.id %>" style="color: red;"><i
+                                                        class="me-2 mdi mdi-delete"></i></a>
+
+
+                                            </td>
+                                        </tr>
+
+
+                                        <% }) %>
+                                </tbody>
+                            </table>
+
+                            <% }else { %>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Hobby</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Avatar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <% records.map((data, index)=> { %>
+
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= index+1 %>
+                                                </th>
+                                                <td>
+                                                    <%= data.fname %>
+                                                </td>
+                                                <td>
+                                                    <%= data.lname %>
+                                                </td>
+                                                <td>
+                                                    <%= data.email %>
+                                                </td>
+                                                <td>
+                                                    <%= data.gender %>
+                                                </td>
+                                                <td>
+                                                    <%= data.hobby %>
+                                                </td>
+                                                <td>
+                                                    <%= data.city %>
+                                                </td>
+                                                <td>
+                                                    <%= data.desc %>
+                                                </td>
+                                                <td><img src="<%= data.avatar %>" height="100"></td>
+                                            </tr>
+
+
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+
+                                <% }%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('../footer') %>

@@ -1,0 +1,12 @@
+{
+  "name": "lec-3-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "file" : "node file"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

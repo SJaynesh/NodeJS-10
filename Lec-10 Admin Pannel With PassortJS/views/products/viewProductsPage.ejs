@@ -1,0 +1,96 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">Product Data</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">SubCategory</th>
+                                    <th scope="col">ExtraCategory</th>
+                                    <th scope="col">Old Price</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% allProducts.map((data, index)=> { %>
+                                    <tr>
+                                        <th scope="row">
+                                            <%= ++index %>
+                                        </th>
+                                        <td>
+                                            <%= data.product_name %>
+                                        </td>
+                                        <td>
+                                            <%= data.category_id.c_title %>
+                                        </td>
+                                        <td>
+                                            <%= data.subcategory_id.subcategory_title %>
+                                        </td>
+                                        <td>
+                                            <%= data.extracategory_id.extraCategory_title %>
+                                        </td>
+                                        <td>
+                                            <%= data.old_price %>
+                                        </td>
+                                        <td>
+                                            <%= data.product_price %>
+                                        </td>
+                                        <td>
+                                            <%= data.product_desc %>
+                                        </td>
+                                        <td>
+                                            <%= data.product_stock %>
+                                        </td>
+                                        <td><img src="../<%= data.product_image %>" height="100"></td>
+                                        <td>
+                                            <a href="" style="color: green;">
+                                                <i class="me-2 mdi mdi-border-color"></i>
+                                            </a>
+
+                                            <a href="" style="color: red;"><i class="me-2 mdi mdi-delete"></i></a>
+
+
+                                        </td>
+                                    </tr>
+                                    <%}) %>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('../footer') %>

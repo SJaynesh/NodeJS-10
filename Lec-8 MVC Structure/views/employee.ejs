@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Employee Page</h1>
+
+    <form method="post" action="/employee/addEMP">
+        <table align="center" border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" placeholder="enter name"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" placeholder="enter password"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                </td>
+            </tr>
+            <tr>
+                <td>Hobby</td>
+                <td><input type="checkbox" name="hobby" value="Reading"> Reading
+                    <input type="checkbox" name="hobby" value="Coding"> Coding
+                    <input type="checkbox" name="hobby" value="Eating"> Eating
+                </td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <select name="city">
+                        <option value="">--Select--</option>
+                        <% let city=["Surat","Baroda", "Rajkot" , "Bhavanagar" ];%>
+
+                            <% city.map((data)=> { %>
+
+                                <option value="<%= data %>">
+                                    <%= data %>
+                                </option>
+
+                                <% }) %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Add EMP"></td>
+            </tr>
+        </table>
+    </form>
+
+    <br>
+    <br>
+
+    <table align="center" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Gender</th>
+            <th>Hobby</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+
+        <% records.map((data)=> { %>
+            <tr>
+                <td>
+                    <%= data.name %>
+                </td>
+                <td>
+                    <%= data.password %>
+                </td>
+                <td>
+                    <%= data.gender %>
+                </td>
+                <td>
+                    <%= data.hobby %>
+                </td>
+                <td>
+                    <%= data.city %>
+                </td>
+                <td>
+                    <button><a href="/employee/upEMP/<%= data.id %>"
+                            style="color: green; text-decoration: none;">Update</a></button>
+                    <button><a href="/employee/delEMP?id=<%= data.id %>"
+                            style="color: red; text-decoration: none;">Delete</a></button>
+                </td>
+            </tr>
+            <% })%>
+    </table>
+</body>
+
+</html>

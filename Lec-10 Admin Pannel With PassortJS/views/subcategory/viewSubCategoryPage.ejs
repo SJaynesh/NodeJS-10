@@ -1,0 +1,78 @@
+<%- include('../header') %>
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">SubCategory Data</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Category Image</th>
+                                    <th scope="col">Category Title</th>
+                                    <th scope="col">SubCategory Title</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <% records.map((data, index)=> { %>
+
+                                    <tr>
+                                        <th scope="row">
+                                            <%= index+1 %>
+                                        </th>
+                                        <td>
+                                            <img src="../<%= data.category_id.c_image %>" alt="" height="100">
+                                        </td>
+                                        <td>
+                                            <%= data.category_id.c_title %>
+                                        </td>
+
+                                        <td>
+                                            <%= data.subcategory_title %>
+                                        </td>
+                                        <td>
+                                            <a href="/subcategory/updateSubCategoryPage/<%= data.id %>"
+                                                style="color: green;">
+                                                <button class="btn btn-success">Edit</button>
+                                            </a>
+
+                                            <a href="/subcategory/deleteSubCategory/<%= data.id %>"
+                                                style="color: red;"><button class="btn btn-danger">Delete</button></a>
+                                        </td>
+                                    </tr>
+
+
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('../footer') %>

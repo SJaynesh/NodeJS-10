@@ -1,0 +1,21 @@
+{
+  "name": "lec-12-advance-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1",
+    "nodemailer": "^7.0.4",
+    "nodemon": "^3.1.10"
+  }
+}

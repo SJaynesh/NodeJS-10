@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Update</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Update Employee Page</h1>
+
+    <form method="post" action="/employee/editEMP/<%= record.id %>">
+        <table align="center" border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" value="<%= record.name %>" placeholder="enter name"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" value="<%= record.password%>" placeholder="enter password">
+                </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="Male" <% if(record.gender=="Male" ) { %> checked <% } %>
+                        >Male
+
+                        <input type="radio" name="gender" value="Female" <% if(record.gender=='Female' ) {%> checked
+                        <%}%> > Female
+                </td>
+            </tr>
+            <tr>
+                <td>Hobby</td>
+                <td><input type="checkbox" name="hobby" value="Reading" <% if(record.hobby.includes("Reading")) { %>
+                    checked <% } %> > Reading
+                        <input type="checkbox" name="hobby" value="Coding" <% if(record.hobby.includes("Coding")) { %>
+                        checked <% } %>> Coding
+                            <input type="checkbox" name="hobby" value="Eating" <% if(record.hobby.includes("Eating")) {
+                                %>
+                            checked <% } %>> Eating
+                </td>
+            </tr>
+
+            <tr>
+                <td>City</td>
+                <td>
+                    <select name="city">
+                        <option value="">--Select--</option>
+                        <% let city=["Surat","Baroda", "Rajkot" , "Bhavanagar" ];%>
+
+                            <% city.map((data)=> { %>
+
+                                <option value="<%= data %>" <% if(record.city==data) { %> selected <% } %>>
+                                        <%= data %>
+                                </option>
+
+                                <% }) %>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Edit EMP"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

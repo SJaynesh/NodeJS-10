@@ -1,0 +1,173 @@
+<%- include('../header') %>
+
+
+
+
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Product</h4>
+                    <div class="ms-auto text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Library
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" method="post" action="/product/insertProduct"
+                            enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Add Product</h4>
+
+                                <!-- Product Name  -->
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-end control-label col-form-label">Product
+                                        Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="product_name"
+                                            placeholder="Product Name Here" required />
+                                    </div>
+                                </div>
+
+                                <!-- Category -->
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-end control-label col-form-label">
+                                        Category
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="category_id">
+                                            <option value=""> Select </option>
+                                            <% allCategory.map((data)=> { %>
+                                                <option value="<%= data.id %>">
+                                                    <%= data.c_title %>
+                                                </option>
+
+                                                <% })%>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <!-- SubCategory -->
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-end control-label col-form-label">
+                                        SubCategory
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="subcategory_id">
+                                            <option value=""> Select </option>
+                                            <% allSubCategory.map((data)=> { %>
+                                                <option value="<%= data.id %>">
+                                                    <%= data.subcategory_title %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <!-- ExtraCategory -->
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-end control-label col-form-label">
+                                        ExtraCategory
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="extracategory_id">
+                                            <option value=""> Select </option>
+                                            <% allExtraCategory.map((data)=> { %>
+                                                <option value="<%= data.id %>">
+                                                    <%= data.extraCategory_title %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <!-- Old Price  -->
+                                <div class="form-group row">
+                                    <label for="oprice" class="col-sm-3 text-end control-label col-form-label">Old
+                                        Price</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="old_price"
+                                            placeholder="Old Price Here" required />
+                                    </div>
+                                </div>
+
+
+                                <!-- Price  -->
+                                <div class="form-group row">
+                                    <label for="price"
+                                        class="col-sm-3 text-end control-label col-form-label">Price</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="product_price"
+                                            placeholder="Price Here" required />
+                                    </div>
+                                </div>
+
+                                <!-- Description  -->
+                                <div class="form-group row">
+                                    <label for="cono1"
+                                        class="col-sm-3 text-end control-label col-form-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" name="product_desc"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Stock  -->
+                                <div class="form-group row">
+                                    <label for="stock"
+                                        class="col-sm-3 text-end control-label col-form-label">Stock</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="product_stock"
+                                            placeholder="Stoct Here" required />
+                                    </div>
+                                </div>
+
+                                <!-- Image  -->
+                                <div class="form-group row">
+                                    <label for="lname"
+                                        class="col-sm-3 text-end control-label col-form-label">Image</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="product_image"
+                                                id="validatedCustomFile" required />
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                            <div class="invalid-feedback">
+                                                Example invalid custom file feedback
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Add Admin Button  -->
+                                <div class="border-top">
+                                    <div class="card-body">
+                                        <button type="submit" class="btn btn-primary">
+                                            Add Product
+                                        </button>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <%- include('../footer') %>

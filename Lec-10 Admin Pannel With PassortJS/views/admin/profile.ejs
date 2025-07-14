@@ -1,0 +1,44 @@
+<%- include('../header') %>
+
+    <div class="container">
+
+
+        <main>
+            <header>
+                <h1>My Profile</h1>
+            </header>
+
+            <section class="dashboard">
+                <div class="profile-card">
+                    <img src="<%= currentAdmin.avatar %>" class="profile-img" alt="Profile Image">
+                    <div class="profile-info">
+                        <h3>
+                            <%= currentAdmin.fname + " " + currentAdmin.lname %>
+                        </h3>
+                        <p>📧 <%= currentAdmin.email %>
+                        </p>
+                        <p>
+                            <% if(currentAdmin.gender=='Male' ) { %>
+                                👨
+                                <% } else { %>
+                                    👧
+                                    <%}%>
+                                        <%= currentAdmin.gender %>
+                        </p>
+
+                        <p>🏓 <%= currentAdmin.hobby %>
+                        </p>
+                        <p>🏙 <%= currentAdmin.city %>
+                        </p>
+                        <p>
+                            <%= currentAdmin.desc %>
+                        </p>
+                        <button class="save-btn"><a href="/updateAdmin/?id=<%= currentAdmin._id %>"
+                                style="color: white; text-decoration: none;">Edit</a></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <%- include('../footer') %>
